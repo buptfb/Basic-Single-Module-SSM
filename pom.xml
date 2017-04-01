@@ -486,8 +486,9 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>${maven-dependency-plugin.version}</version>
             </plugin>
-
         </plugins>
+
+
     </build>
     <!--设置项目编译级别等设置 end-->
 
