@@ -226,4 +226,9 @@ public class EsIndex {
     public void setIndexMappingField(String indexMappingField) {
         this.indexMappingField = indexMappingField == null ? null : indexMappingField.trim();
     }
+
+    @Override
+    public String toString(){
+        return "{}";
+    }
 }

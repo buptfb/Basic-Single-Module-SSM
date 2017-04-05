@@ -1,6 +1,7 @@
 package com.youmeek.ssm.module.esindex.mapper;
 
 import com.youmeek.ssm.module.esindex.pojo.EsIndex;
+import org.apache.ibatis.annotations.Param;
 
 public interface EsIndexMapper {
     /**
