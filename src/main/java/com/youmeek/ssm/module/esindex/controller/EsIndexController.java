@@ -4,6 +4,8 @@ package com.youmeek.ssm.module.esindex.controller;
  * Created by fanbo on 2017/4/5.
  */
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.youmeek.ssm.module.esindex.pojo.EsIndex;
 import com.youmeek.ssm.module.esindex.service.EsIndexService;
 import org.slf4j.Logger;
@@ -12,10 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -26,24 +32,27 @@ public class EsIndexController {
     @Resource
     private EsIndexService esIndexService;
 
-/*    @RequestMapping("/showEsIndexToJspById/{indexId}")
-    public String showUser(Model model,@PathVariable("indexId") Long userId){
-        SysUser user = this.sysUserService.getById(indexId);
-        model.addAttribute("user", user);
-        return "showUser";
-    }*/
-
     @RequestMapping("/showEsIndexToJSONById/{indexId}")
     @ResponseBody
-    public EsIndex showEsIndex(@PathVariable("indexId") Integer indexId){
-        EsIndex esIndex = esIndexService.getById(indexId);
+    public EsIndex showEsIndexById(@PathVariable("indexId") Integer indexId) {
+        EsIndex esIndex = this.esIndexService.getById(indexId);
         return esIndex;
     }
 
 
+    @RequestMapping(value = "/showEsIndexToJSON",  method = RequestMethod.GET)
+    @ResponseBody
+    public String showEsIndexALL() {
+        Map<String, Object> resultStr = new HashMap<>();
+        List<EsIndex> esIndex = esIndexService.getALL();
+        resultStr.put("result", esIndex);
+        String json = JSONObject.toJSONString(resultStr, SerializerFeature.DisableCircularReferenceDetect);
+        return json;
+    }
+
     @RequestMapping("/test-logback")
     @ResponseBody
-    public Date testLogback(){
+    public Date testLogback() {
         LOG.trace("----------------------------------trace");
         LOG.debug("-----------------------------------debug");
         LOG.info("-----------------------------------info");

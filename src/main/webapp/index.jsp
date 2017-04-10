@@ -25,7 +25,11 @@
 <a href="/sysUserController/showUserToJSONById/1" target="_blank">查询用户信息并直接输出JSON数据</a>
 <br>
 
-<a href="/esIndexController/showEsIndexToJSONById/1" target="_blank">查询ES index-type信息并直接输出JSON数据</a>
+<%--<a href="/esIndexController/showEsIndexToJSONById/1" target="_blank">查询ES index-type信息并直接输出JSON数据</a>--%>
+<a href="/esIndexController/showEsIndexToJSON" target="_blank">查询ES index-type信息并直接输出JSON数据</a>
+<br>
 
+<a href="/login/check?username=fanbo&password=imoran@0505" target="_blank">登录check 返回JSON数据</a>
+<br>
 </body>
 </html>

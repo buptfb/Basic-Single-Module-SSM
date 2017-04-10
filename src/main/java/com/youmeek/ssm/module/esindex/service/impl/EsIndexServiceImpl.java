@@ -7,6 +7,9 @@ import com.youmeek.ssm.module.esindex.service.EsIndexService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.json.JsonObject;
+import javax.validation.OverridesAttribute;
+import java.util.List;
 
 
 /**
@@ -22,5 +25,10 @@ public class EsIndexServiceImpl implements EsIndexService {
     @Override
     public EsIndex getById(Integer indexId) {
         return esIndexMapper.selectByPrimaryKey(indexId);
+    }
+
+    @Override
+    public List<EsIndex> getALL() {
+        return esIndexMapper.selectAll();
     }
 }

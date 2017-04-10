@@ -1,5 +1,8 @@
 package com.youmeek.ssm;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.youmeek.ssm.module.login.service.LoginService;
 import com.youmeek.ssm.module.user.pojo.SysUser;
 import com.youmeek.ssm.module.user.service.SysUserService;
 import com.youmeek.ssm.module.esindex.pojo.EsIndex;
@@ -12,6 +15,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import javax.persistence.Table;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:spring/applicationContext*.xml"})
@@ -22,6 +28,9 @@ public class SSMTest {
 	private SysUserService sysUserService;
 	@Resource
 	private EsIndexService esIndexService;
+
+	@Resource
+	private LoginService loginService;
 
 	@Test
 	public void test1() {
@@ -34,5 +43,19 @@ public class SSMTest {
 	public void test2(){
 		EsIndex esIndex = esIndexService.getById(1);
 		System.out.println("################################" + esIndex.toString());
+	}
+
+	@Test
+	public void test3(){
+		Map<String, Object> resultStr = new HashMap<>();
+		List<EsIndex> esIndex = esIndexService.getALL();
+		resultStr.put("result", esIndex);
+		String json = JSONObject.toJSONString(resultStr, SerializerFeature.DisableCircularReferenceDetect);
+		System.out.println(json);
+	}
+
+	@Test
+	public void test4() {
+		System.out.println(loginService.checkAccount("fanbo", "imoran@0505"));
 	}
 }

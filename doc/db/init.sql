@@ -47,7 +47,7 @@ CREATE TABLE `user_info` (
   `user_type_id` tinyint(1)  NOT NULL COMMENT '用户类型id',
   `create_time` datetime default CURRENT_TIMESTAMP COMMENT '创建时间',
   `modify_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`user_id`, `user_name`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='知识库干预平台用户表';
 
 
@@ -104,7 +104,13 @@ insert  into `sys_user`(`sys_user_id`,`sys_user_login_name`,`sys_user_login_pass
 */
 USE ssm;
 insert into `user_info` (user_name, user_pwd, user_email, user_type_id) values('fanbo', 'imoran@0505', 'fanbo@imoran.net', 2);
+insert into `user_info` (user_name, user_pwd, user_email, user_type_id) values('caoxiaoshuai', 'imoran@0505', 'caoxiaoshuai@imoran.net', 0);
 insert INTO `user_type` (user_type_name) VALUES ('common');
 insert INTO `user_type` (user_type_name) VALUES ('reviewer');
 insert INTO `user_type` (user_type_name) VALUES ('admin');
+
+alter table user_info modify column user_type_id int(11);
+
+USE ssm;
+desc user_info;
 
