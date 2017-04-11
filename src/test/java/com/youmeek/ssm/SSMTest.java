@@ -23,7 +23,6 @@ import java.util.Map;
 @ContextConfiguration(locations = {"classpath*:spring/applicationContext*.xml"})
 public class SSMTest {
 
-	
 	@Resource
 	private SysUserService sysUserService;
 	@Resource

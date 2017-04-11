@@ -40,21 +40,20 @@ CREATE TABLE `user_type`(
 
 
 CREATE TABLE `user_info` (
-  `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `user_name` varchar(32) NOT NULL COMMENT '用户名',
   `user_pwd` varchar (32) NOT NULL COMMENT '用户密码',
   `user_email` varchar (32) NOT NULL COMMENT '用户邮箱地址',
   `user_type_id` tinyint(1)  NOT NULL COMMENT '用户类型id',
   `create_time` datetime default CURRENT_TIMESTAMP COMMENT '创建时间',
   `modify_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
-  PRIMARY KEY (`user_id`, `user_name`)
+  PRIMARY KEY (`user_name`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='知识库干预平台用户表';
 
 
 CREATE TABLE `job_info`(
   `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '任务id',
   `user_id` int(11) unsigned  NOT NULL COMMENT '创建该任务的用户id',
-  `job_type_id` tinyint(1) unsigned  NOT NULL COMMENT '任务类型id',
+  `job_type_id` SMALLINT (1) unsigned  NOT NULL COMMENT '任务类型id',
   `job_cmd` varchar(512)  NOT NULL COMMENT '请求命令',
   `job_status` varchar(32)  NOT NULL COMMENT 'Job执行状态',
   `job_create_time` datetime default CURRENT_TIMESTAMP COMMENT 'job创建时间',
@@ -109,8 +108,10 @@ insert INTO `user_type` (user_type_name) VALUES ('common');
 insert INTO `user_type` (user_type_name) VALUES ('reviewer');
 insert INTO `user_type` (user_type_name) VALUES ('admin');
 
-alter table user_info modify column user_type_id int(11);
+alter table user_info modify column user_type_id SMALLINT (1);
 
 USE ssm;
 desc user_info;
+
+
 

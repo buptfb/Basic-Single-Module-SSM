@@ -19,7 +19,7 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public UserInfo checkAccount(String userName, String password) {
-        UserInfo userInfo = userInfoMapper.selectByUserName(userName);
+        UserInfo userInfo = userInfoMapper.selectByPrimaryKey(userName);
         System.out.println(userInfo.getUserEmail());
         if (password.equals(userInfo.getUserPwd())) return userInfo;
         return null;
