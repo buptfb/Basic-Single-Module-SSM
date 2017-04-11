@@ -2,6 +2,8 @@ package com.youmeek.ssm;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.youmeek.ssm.module.doc.pojo.DocumentInfo;
+import com.youmeek.ssm.module.doc.service.DocService;
 import com.youmeek.ssm.module.job.service.JobService;
 import com.youmeek.ssm.module.login.service.LoginService;
 import com.youmeek.ssm.module.user.pojo.SysUser;
@@ -20,6 +22,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 import javax.persistence.Table;
+import javax.print.Doc;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +39,8 @@ public class SSMTest {
     private LoginService loginService;
     @Resource
     private JobService jobService;
+    @Resource
+    private DocService docService;
 
     @Test
     public void test1() {
@@ -72,5 +77,15 @@ public class SSMTest {
         resultStr.put("result", jobInfo);
         String json = JSONObject.toJSONString(resultStr, SerializerFeature.DisableCircularReferenceDetect);
         System.out.println(json);
+    }
+
+    @Test
+    public void test6(){
+        Map<String, Object> resultStr = new HashMap<>();
+        List<DocumentInfo> documentInfos = docService.getByJobID(1);
+        resultStr.put("result", documentInfos);
+        String json = JSONObject.toJSONString(resultStr, SerializerFeature.DisableCircularReferenceDetect);
+        System.out.println(json);
+
     }
 }
