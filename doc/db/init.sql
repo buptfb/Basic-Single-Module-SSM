@@ -52,21 +52,27 @@ CREATE TABLE `user_info` (
 
 CREATE TABLE `job_info`(
   `job_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '任务id',
-  `user_id` int(11) unsigned  NOT NULL COMMENT '创建该任务的用户id',
-  `job_type_id` SMALLINT (1) unsigned  NOT NULL COMMENT '任务类型id',
-  `job_cmd` varchar(512)  NOT NULL COMMENT '请求命令',
+  `user_name` varchar(32) NOT NULL COMMENT '创建该任务的用户名',
+  `job_type` varchar (32) NOT NULL COMMENT '任务类型',
+  `job_params` text  NOT NULL COMMENT 'job请求参数',
   `job_status` varchar(32)  NOT NULL COMMENT 'Job执行状态',
   `job_create_time` datetime default CURRENT_TIMESTAMP COMMENT 'job创建时间',
   `job_modify_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'job状态更新时间',
   PRIMARY KEY(`job_id`)
   )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='知识库干预平台任务表';
 
+CREATE TABLE `document_info`(
+  `doc_id` bigint NOT NULL AUTO_INCREMENT COMMENT 'doc id值',
+  `job_id` int(11) unsigned NOT NULL  COMMENT 'doc所属job id',
+  `op_type` varchar (32) NOT NULL COMMENT 'doc的待操作类型',
+  `doc_content` text  NOT NULL COMMENT 'doc内容',
+  `doc_status` varchar(32)  NOT NULL COMMENT 'doc审核状态',
+  `doc_create_time` datetime default CURRENT_TIMESTAMP COMMENT 'doc创建时间',
+  `doc_modify_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'doc最后更新时间',
+  PRIMARY KEY(`doc_id`)
+  )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='知识库干预平台document信息表';
 
-CREATE TABLE `job_type`(
-  `job_type_id` tinyint(1) unsigned  NOT NULL AUTO_INCREMENT COMMENT 'job类型id',
-  `job_type_name` varchar(32)  NOT NULL COMMENT '操作类型名称',
-  PRIMARY KEY (`job_type_id`)
-  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='知识库干预平台任务类型表';
+
 
 
 CREATE TABLE `es_index`(
@@ -110,8 +116,13 @@ insert INTO `user_type` (user_type_name) VALUES ('admin');
 
 alter table user_info modify column user_type_id SMALLINT (1);
 
+insert into `job_info` (user_name, job_type, job_params, job_status) values('fanbo', 'add', '', 'unaudited');
+insert INTO `job_info` (user_name, job_type, job_params, job_status) values('fanbo', 'modify', '', 'in_audit');
+insert INTO `job_info` (user_name, job_type, job_params, job_status) values('fanbo', 'modify', '', 'audited');
+insert INTO `job_info` (user_name, job_type, job_params, job_status) values('fanbo', 'modify', '', 'online');
+
 USE ssm;
 desc user_info;
 
-
+insert INTO `document_info` (job_id, op_type, doc_content, doc_status) values(1, 'add', '', 'unaudited');
 
