@@ -10,10 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -29,26 +31,11 @@ public class LoginController {
     @Resource
     private LoginService loginService;
 
-    @RequestMapping(value = "/check", method = RequestMethod.GET)
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
     @ResponseBody
-    public String check(HttpServletRequest request) {
+    public String check(@RequestParam String username, @RequestParam String password, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         //解析参数
-        String[] arrSplit = request.getQueryString().split("[&]");
-        HashMap<String, String> mapRequest = new HashMap<>();
-        for (String strSplit : arrSplit) {
-            String[] arrSplitEqual = null;
-            arrSplitEqual = strSplit.split("[=]");
-            //解析出键值
-            if (arrSplitEqual.length > 1) {
-                //正确解析
-                mapRequest.put(arrSplitEqual[0], arrSplitEqual[1]);
-            } else {
-                if (arrSplitEqual[0] != "") {
-                    //只有参数没有值，不加入
-                    mapRequest.put(arrSplitEqual[0], "");
-                }
-            }
-        }
         JSONObject jsonObject = JSONObject.parseObject("{\n" +
                 "    \"ret\":1,\n" +
                 "    \"msg\":\"failed\",\n" +
@@ -56,17 +43,17 @@ public class LoginController {
                 "    }\n" +
                 "}\n");
         JSONObject dataJson = JSONObject.parseObject("{}");
-        if (mapRequest.containsKey("username") && mapRequest.containsKey("password")) {
-            UserInfo userInfo = this.loginService.checkAccount(mapRequest.get("username"), mapRequest.get("password"));
 
-            if (null != userInfo) {
-                dataJson.put("user_info", userInfo);
+        UserInfo userInfo = this.loginService.checkAccount(username, password);
 
-                jsonObject.put("ret", 0);
-                jsonObject.put("msg", "success");
-                jsonObject.put("data", dataJson);
-            }
+        if (null != userInfo) {
+            dataJson.put("user_info", userInfo);
+
+            jsonObject.put("ret", 0);
+            jsonObject.put("msg", "success");
+            jsonObject.put("data", dataJson);
         }
+
         return JSONObject.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 

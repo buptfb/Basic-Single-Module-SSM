@@ -33,18 +33,18 @@
         </javaTypeResolver>
 
         <!--要生成的 pojo 模块位置-->
-        <javaModelGenerator targetPackage="com.youmeek.ssm.module.doc.pojo" targetProject="THIS_CONFIGURATION_IS_NOT_REQUIRED">
+        <javaModelGenerator targetPackage="com.youmeek.ssm.module.esindex.pojo" targetProject="THIS_CONFIGURATION_IS_NOT_REQUIRED">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!--要生成的 Mapper.xml 文件位置-->
-        <sqlMapGenerator targetPackage="com.youmeek.ssm.module.doc.mapper" targetProject="THIS_CONFIGURATION_IS_NOT_REQUIRED">
+        <sqlMapGenerator targetPackage="com.youmeek.ssm.module.esindex.mapper" targetProject="THIS_CONFIGURATION_IS_NOT_REQUIRED">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!--要生成的 Mapper 接口类-->
-        <javaClientGenerator targetPackage="com.youmeek.ssm.module.doc.mapper" targetProject="THIS_CONFIGURATION_IS_NOT_REQUIRED"
+        <javaClientGenerator targetPackage="com.youmeek.ssm.module.esindex.mapper" targetProject="THIS_CONFIGURATION_IS_NOT_REQUIRED"
                              type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
@@ -53,10 +53,8 @@
         <!--要根据哪张表生成，要在这里配置-->
         <!--用百分号表示生成所有表,可以直接省去一个一个写 <table tableName="%" /> -->
 <!--        <table tableName="sys_user" enableCountByExample="false" enableDeleteByExample="false"
-               enableSelectByExample="false" enableUpdateByExample="false"/>
-        <table tableName="es_index" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"/>-->
-        <table tableName="document_info" enableCountByExample="false" enableDeleteByExample="false"
+        <table tableName="es_index" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"/>
 
 

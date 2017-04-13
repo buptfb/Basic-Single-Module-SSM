@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +36,8 @@ public class JobController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public String showEsIndexById(HttpServletRequest request) {
+    public String showEsIndexById(HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         //解析
         String[] arrSplit = request.getQueryString().split("[&]");
         HashMap<String, String> mapRequest = new HashMap<>();

@@ -6,6 +6,8 @@ import com.youmeek.ssm.module.doc.pojo.DocumentInfo;
 import com.youmeek.ssm.module.doc.service.DocService;
 import com.youmeek.ssm.module.job.service.JobService;
 import com.youmeek.ssm.module.login.service.LoginService;
+import com.youmeek.ssm.module.query.service.QueryService;
+import com.youmeek.ssm.module.query.service.impl.SimpleQueryServiceImpl;
 import com.youmeek.ssm.module.user.pojo.SysUser;
 import com.youmeek.ssm.module.user.service.SysUserService;
 import com.youmeek.ssm.module.esindex.pojo.EsIndex;
@@ -42,6 +44,8 @@ public class SSMTest {
     @Resource
     private DocService docService;
 
+    private QueryService queryService = new SimpleQueryServiceImpl();
+
     @Test
     public void test1() {
         SysUser sysUser = sysUserService.getById(1L);
@@ -52,7 +56,7 @@ public class SSMTest {
     @Test
     public void test2() {
         EsIndex esIndex = esIndexService.getById(1);
-        System.out.println("################################" + esIndex.toString());
+        System.out.println("################################" + esIndex.getIndexMappingField().toString());
     }
 
     @Test
@@ -87,5 +91,10 @@ public class SSMTest {
         String json = JSONObject.toJSONString(resultStr, SerializerFeature.DisableCircularReferenceDetect);
         System.out.println(json);
 
+    }
+
+    @Test
+    public void test7(){
+        queryService.queryEs();
     }
 }

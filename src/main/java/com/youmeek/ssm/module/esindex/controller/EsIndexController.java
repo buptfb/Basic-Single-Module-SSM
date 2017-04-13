@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -42,7 +43,8 @@ public class EsIndexController {
 
     @RequestMapping(value = "/showEsIndexToJSON",  method = RequestMethod.GET)
     @ResponseBody
-    public String showEsIndexALL() {
+    public String showEsIndexALL(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         Map<String, Object> resultStr = new HashMap<>();
         List<EsIndex> esIndex = esIndexService.getALL();
         resultStr.put("result", esIndex);

@@ -1,9 +1,7 @@
 package com.youmeek.ssm.module.esindex.mapper;
 
 import com.youmeek.ssm.module.esindex.pojo.EsIndex;
-import org.apache.ibatis.annotations.Param;
 
-import javax.json.JsonObject;
 import java.util.List;
 
 public interface EsIndexMapper {
@@ -63,10 +61,9 @@ public interface EsIndexMapper {
      */
     int updateByPrimaryKey(EsIndex record);
 
-
     /**
-     * 获取所有Elastic Search的index type schema信息
      * @return
      */
     List<EsIndex> selectAll();
+
 }

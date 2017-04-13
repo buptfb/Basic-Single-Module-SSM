@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,8 @@ public class DocumentController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public String showEsIndexById(HttpServletRequest request) {
+    public String showEsIndexById(HttpServletRequest request, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
         String[] arrSplit = request.getQueryString().split("[&]");
         HashMap<String, String> mapRequest = new HashMap<>();
         for (String strSplit : arrSplit) {

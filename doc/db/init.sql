@@ -74,13 +74,12 @@ CREATE TABLE `document_info`(
 
 
 
-
+DROP TABLE IF EXISTS `es_index`;
 CREATE TABLE `es_index`(
   `index_id` int(11) unsigned NOT NULL auto_increment COMMENT '索引id',
   `index_name` varchar(64) NOT NULL COMMENT '索引名称',
   `type_name` varchar(64) NOT NULL COMMENT 'type名称',
   `index_mapping_field`  text   NOT NULL COMMENT 'mapping字段',
-  `field_query_type_id` tinyint(1)  NOT NULL COMMENT '字段支持查询类型id',
   `index_create_time` datetime default CURRENT_TIMESTAMP COMMENT 'index创建时间',
   `index_modify_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'index状态更新时间',
   PRIMARY KEY(`index_id`)
