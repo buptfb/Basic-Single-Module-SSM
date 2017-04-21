@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package com.youmeek.ssm.module.query.service;
+package com.youmeek.ssm.module.rpc;
 
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TTupleProtocol;
@@ -33,7 +33,7 @@ public class Result implements org.apache.thrift.TBase<Result, Result._Fields>, 
    */
   public ThriftResult result; // required
   /**
-   * 
+   *
    * @see Action
    */
   public Action value; // required
@@ -41,12 +41,12 @@ public class Result implements org.apache.thrift.TBase<Result, Result._Fields>, 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
     /**
-     * 
+     *
      * @see ThriftResult
      */
     RESULT((short)1, "result"),
     /**
-     * 
+     *
      * @see Action
      */
     VALUE((short)2, "value");
@@ -111,9 +111,9 @@ public class Result implements org.apache.thrift.TBase<Result, Result._Fields>, 
   public static final Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.RESULT, new org.apache.thrift.meta_data.FieldMetaData("result", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.RESULT, new org.apache.thrift.meta_data.FieldMetaData("result", org.apache.thrift.TFieldRequirementType.DEFAULT,
         new org.apache.thrift.meta_data.EnumMetaData(org.apache.thrift.protocol.TType.ENUM, ThriftResult.class)));
-    tmpMap.put(_Fields.VALUE, new org.apache.thrift.meta_data.FieldMetaData("value", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.VALUE, new org.apache.thrift.meta_data.FieldMetaData("value", org.apache.thrift.TFieldRequirementType.DEFAULT,
         new org.apache.thrift.meta_data.EnumMetaData(org.apache.thrift.protocol.TType.ENUM, Action.class)));
     metaDataMap = Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(Result.class, metaDataMap);
@@ -154,7 +154,7 @@ public class Result implements org.apache.thrift.TBase<Result, Result._Fields>, 
   }
 
   /**
-   * 
+   *
    * @see ThriftResult
    */
   public ThriftResult getResult() {
@@ -162,7 +162,7 @@ public class Result implements org.apache.thrift.TBase<Result, Result._Fields>, 
   }
 
   /**
-   * 
+   *
    * @see ThriftResult
    */
   public Result setResult(ThriftResult result) {
@@ -186,7 +186,7 @@ public class Result implements org.apache.thrift.TBase<Result, Result._Fields>, 
   }
 
   /**
-   * 
+   *
    * @see Action
    */
   public Action getValue() {
@@ -194,7 +194,7 @@ public class Result implements org.apache.thrift.TBase<Result, Result._Fields>, 
   }
 
   /**
-   * 
+   *
    * @see Action
    */
   public Result setValue(Action value) {
@@ -406,7 +406,7 @@ public class Result implements org.apache.thrift.TBase<Result, Result._Fields>, 
       while (true)
       {
         schemeField = iprot.readFieldBegin();
-        if (schemeField.type == org.apache.thrift.protocol.TType.STOP) { 
+        if (schemeField.type == org.apache.thrift.protocol.TType.STOP) {
           break;
         }
         switch (schemeField.id) {
@@ -414,7 +414,7 @@ public class Result implements org.apache.thrift.TBase<Result, Result._Fields>, 
             if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
               struct.result = ThriftResult.findByValue(iprot.readI32());
               struct.setResultIsSet(true);
-            } else { 
+            } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
@@ -422,7 +422,7 @@ public class Result implements org.apache.thrift.TBase<Result, Result._Fields>, 
             if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
               struct.value = Action.findByValue(iprot.readI32());
               struct.setValueIsSet(true);
-            } else { 
+            } else {
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;

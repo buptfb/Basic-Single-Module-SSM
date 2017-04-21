@@ -125,3 +125,17 @@ desc user_info;
 
 insert INTO `document_info` (job_id, op_type, doc_content, doc_status) values(1, 'add', '', 'unaudited');
 
+create table abc(语文 int,数学 int ,英语 int);
+insert into abc values(70,80,58);
+/*insert into abc values('100','50','60')*/
+select * from abc
+select (case when 语文 >=80 then '优秀'
+             when 语文 >=60 then '及格'
+             else '不及格' end ) 语文,
+       (case when 数学 >=80 then '优秀'
+             when 数学 >=60 then '及格'
+             else '不及格' end ) 数学,
+       (case when 英语 >=80 then '优秀'
+             when 英语 >=60 then '及格'
+             else '不及格' end ) 英语
+ from abc

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <description>thrift配置文件</description>
+    <!-- 连接池配置 -->
+    <bean id="connectionProvider" class="com.youmeek.ssm.module.rpc.ConnectionProviderImpl">
+        <property name="serviceIP" value="101.201.210.129"/>
+        <property name="servicePort" value="8020"/>
+        <property name="maxActive" value="10"/>
+        <property name="maxIdle" value="10"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="conTimeOut" value="2000"/>
+    </bean>
+
+    <bean id="connectionManager" class="com.youmeek.ssm.module.rpc.ConnectionManager">
+        <property name="connectionProvider" ref="connectionProvider"/>
+    </bean>
+
+    <bean id="thriftClientProxy" class="com.youmeek.ssm.module.rpc.ThriftClientProxy">
+        <property name="connectionManager" ref="connectionManager"/>
+    </bean>
+
+    <bean id="thriftClient" class="com.youmeek.ssm.module.rpc.ThriftClient">
+        <property name="connectionManager" ref="connectionManager"/>
+    </bean>
+</beans>

@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package com.youmeek.ssm.module.query.service;
+package com.youmeek.ssm.module.rpc;
 
 public class datatypeConstants {
 

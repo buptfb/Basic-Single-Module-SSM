@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package com.youmeek.ssm.module.query.service;
+package com.youmeek.ssm.module.rpc;
 
 import org.apache.thrift.EncodingUtils;
 import org.apache.thrift.TException;
@@ -33,13 +33,13 @@ public class IDataCheckThriftService {
      * @param taskID
      * @param jsonStr
      */
-    public com.youmeek.ssm.module.query.service.Result dataCheck(com.youmeek.ssm.module.query.service.Action action, long taskID, String jsonStr) throws TException;
+    public Result dataCheck(Action action, long taskID, String jsonStr) throws TException;
 
   }
 
   public interface AsyncIface {
 
-    public void dataCheck(com.youmeek.ssm.module.query.service.Action action, long taskID, String jsonStr, AsyncMethodCallback resultHandler) throws TException;
+    public void dataCheck(Action action, long taskID, String jsonStr, AsyncMethodCallback resultHandler) throws TException;
 
   }
 
@@ -63,13 +63,13 @@ public class IDataCheckThriftService {
       super(iprot, oprot);
     }
 
-    public com.youmeek.ssm.module.query.service.Result dataCheck(com.youmeek.ssm.module.query.service.Action action, long taskID, String jsonStr) throws TException
+    public Result dataCheck(Action action, long taskID, String jsonStr) throws TException
     {
       send_dataCheck(action, taskID, jsonStr);
       return recv_dataCheck();
     }
 
-    public void send_dataCheck(com.youmeek.ssm.module.query.service.Action action, long taskID, String jsonStr) throws TException
+    public void send_dataCheck(Action action, long taskID, String jsonStr) throws TException
     {
       dataCheck_args args = new dataCheck_args();
       args.setAction(action);
@@ -78,7 +78,7 @@ public class IDataCheckThriftService {
       sendBase("dataCheck", args);
     }
 
-    public com.youmeek.ssm.module.query.service.Result recv_dataCheck() throws TException
+    public Result recv_dataCheck() throws TException
     {
       dataCheck_result result = new dataCheck_result();
       receiveBase(result, "dataCheck");
@@ -106,7 +106,7 @@ public class IDataCheckThriftService {
       super(protocolFactory, clientManager, transport);
     }
 
-    public void dataCheck(com.youmeek.ssm.module.query.service.Action action, long taskID, String jsonStr, AsyncMethodCallback resultHandler) throws TException {
+    public void dataCheck(Action action, long taskID, String jsonStr, AsyncMethodCallback resultHandler) throws TException {
       checkReady();
       dataCheck_call method_call = new dataCheck_call(action, taskID, jsonStr, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
@@ -114,10 +114,10 @@ public class IDataCheckThriftService {
     }
 
     public static class dataCheck_call extends org.apache.thrift.async.TAsyncMethodCall {
-      private com.youmeek.ssm.module.query.service.Action action;
+      private Action action;
       private long taskID;
       private String jsonStr;
-      public dataCheck_call(com.youmeek.ssm.module.query.service.Action action, long taskID, String jsonStr, AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws TException {
+      public dataCheck_call(Action action, long taskID, String jsonStr, AsyncMethodCallback resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.action = action;
         this.taskID = taskID;
@@ -134,7 +134,7 @@ public class IDataCheckThriftService {
         prot.writeMessageEnd();
       }
 
-      public com.youmeek.ssm.module.query.service.Result getResult() throws TException {
+      public Result getResult() throws TException {
         if (getState() != State.RESPONSE_READ) {
           throw new IllegalStateException("Method call not finished!");
         }
@@ -198,7 +198,7 @@ public class IDataCheckThriftService {
       return processMap;
     }
 
-    public static class dataCheck<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, dataCheck_args, com.youmeek.ssm.module.query.service.Result> {
+    public static class dataCheck<I extends AsyncIface> extends org.apache.thrift.AsyncProcessFunction<I, dataCheck_args, Result> {
       public dataCheck() {
         super("dataCheck");
       }
@@ -207,10 +207,10 @@ public class IDataCheckThriftService {
         return new dataCheck_args();
       }
 
-      public AsyncMethodCallback<com.youmeek.ssm.module.query.service.Result> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
+      public AsyncMethodCallback<Result> getResultHandler(final AsyncFrameBuffer fb, final int seqid) {
         final org.apache.thrift.AsyncProcessFunction fcall = this;
-        return new AsyncMethodCallback<com.youmeek.ssm.module.query.service.Result>() { 
-          public void onComplete(com.youmeek.ssm.module.query.service.Result o) {
+        return new AsyncMethodCallback<Result>() {
+          public void onComplete(Result o) {
             dataCheck_result result = new dataCheck_result();
             result.success = o;
             try {
@@ -244,7 +244,7 @@ public class IDataCheckThriftService {
         return false;
       }
 
-      public void start(I iface, dataCheck_args args, AsyncMethodCallback<com.youmeek.ssm.module.query.service.Result> resultHandler) throws TException {
+      public void start(I iface, dataCheck_args args, AsyncMethodCallback<Result> resultHandler) throws TException {
         iface.dataCheck(args.action, args.taskID, args.jsonStr,resultHandler);
       }
     }
@@ -266,9 +266,9 @@ public class IDataCheckThriftService {
 
     /**
      * 
-     * @see com.youmeek.ssm.module.query.service.Action
+     * @see Action
      */
-    public com.youmeek.ssm.module.query.service.Action action; // required
+    public Action action; // required
     public long taskID; // required
     public String jsonStr; // required
 
@@ -276,7 +276,7 @@ public class IDataCheckThriftService {
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       /**
        * 
-       * @see com.youmeek.ssm.module.query.service.Action
+       * @see Action
        */
       ACTION((short)1, "action"),
       TASK_ID((short)2, "taskID"),
@@ -347,7 +347,7 @@ public class IDataCheckThriftService {
     static {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.ACTION, new org.apache.thrift.meta_data.FieldMetaData("action", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.EnumMetaData(org.apache.thrift.protocol.TType.ENUM, com.youmeek.ssm.module.query.service.Action.class)));
+          new org.apache.thrift.meta_data.EnumMetaData(org.apache.thrift.protocol.TType.ENUM, Action.class)));
       tmpMap.put(_Fields.TASK_ID, new org.apache.thrift.meta_data.FieldMetaData("taskID", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
       tmpMap.put(_Fields.JSON_STR, new org.apache.thrift.meta_data.FieldMetaData("jsonStr", org.apache.thrift.TFieldRequirementType.DEFAULT, 
@@ -360,7 +360,7 @@ public class IDataCheckThriftService {
     }
 
     public dataCheck_args(
-      com.youmeek.ssm.module.query.service.Action action,
+      Action action,
       long taskID,
       String jsonStr)
     {
@@ -399,17 +399,17 @@ public class IDataCheckThriftService {
 
     /**
      * 
-     * @see com.youmeek.ssm.module.query.service.Action
+     * @see Action
      */
-    public com.youmeek.ssm.module.query.service.Action getAction() {
+    public Action getAction() {
       return this.action;
     }
 
     /**
      * 
-     * @see com.youmeek.ssm.module.query.service.Action
+     * @see Action
      */
-    public dataCheck_args setAction(com.youmeek.ssm.module.query.service.Action action) {
+    public dataCheck_args setAction(Action action) {
       this.action = action;
       return this;
     }
@@ -482,7 +482,7 @@ public class IDataCheckThriftService {
         if (value == null) {
           unsetAction();
         } else {
-          setAction((com.youmeek.ssm.module.query.service.Action)value);
+          setAction((Action)value);
         }
         break;
 
@@ -709,7 +709,7 @@ public class IDataCheckThriftService {
           switch (schemeField.id) {
             case 1: // ACTION
               if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
-                struct.action = com.youmeek.ssm.module.query.service.Action.findByValue(iprot.readI32());
+                struct.action = Action.findByValue(iprot.readI32());
                 struct.setActionIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
@@ -803,7 +803,7 @@ public class IDataCheckThriftService {
         TTupleProtocol iprot = (TTupleProtocol) prot;
         BitSet incoming = iprot.readBitSet(3);
         if (incoming.get(0)) {
-          struct.action = com.youmeek.ssm.module.query.service.Action.findByValue(iprot.readI32());
+          struct.action = Action.findByValue(iprot.readI32());
           struct.setActionIsSet(true);
         }
         if (incoming.get(1)) {
@@ -830,7 +830,7 @@ public class IDataCheckThriftService {
       schemes.put(TupleScheme.class, new dataCheck_resultTupleSchemeFactory());
     }
 
-    public com.youmeek.ssm.module.query.service.Result success; // required
+    public Result success; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -895,7 +895,7 @@ public class IDataCheckThriftService {
     static {
       Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.SUCCESS, new org.apache.thrift.meta_data.FieldMetaData("success", org.apache.thrift.TFieldRequirementType.DEFAULT, 
-          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, com.youmeek.ssm.module.query.service.Result.class)));
+          new org.apache.thrift.meta_data.StructMetaData(org.apache.thrift.protocol.TType.STRUCT, Result.class)));
       metaDataMap = Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(dataCheck_result.class, metaDataMap);
     }
@@ -904,7 +904,7 @@ public class IDataCheckThriftService {
     }
 
     public dataCheck_result(
-      com.youmeek.ssm.module.query.service.Result success)
+      Result success)
     {
       this();
       this.success = success;
@@ -915,7 +915,7 @@ public class IDataCheckThriftService {
      */
     public dataCheck_result(dataCheck_result other) {
       if (other.isSetSuccess()) {
-        this.success = new com.youmeek.ssm.module.query.service.Result(other.success);
+        this.success = new Result(other.success);
       }
     }
 
@@ -928,11 +928,11 @@ public class IDataCheckThriftService {
       this.success = null;
     }
 
-    public com.youmeek.ssm.module.query.service.Result getSuccess() {
+    public Result getSuccess() {
       return this.success;
     }
 
-    public dataCheck_result setSuccess(com.youmeek.ssm.module.query.service.Result success) {
+    public dataCheck_result setSuccess(Result success) {
       this.success = success;
       return this;
     }
@@ -958,7 +958,7 @@ public class IDataCheckThriftService {
         if (value == null) {
           unsetSuccess();
         } else {
-          setSuccess((com.youmeek.ssm.module.query.service.Result)value);
+          setSuccess((Result)value);
         }
         break;
 
@@ -1110,7 +1110,7 @@ public class IDataCheckThriftService {
           switch (schemeField.id) {
             case 0: // SUCCESS
               if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
-                struct.success = new com.youmeek.ssm.module.query.service.Result();
+                struct.success = new Result();
                 struct.success.read(iprot);
                 struct.setSuccessIsSet(true);
               } else { 
@@ -1169,7 +1169,7 @@ public class IDataCheckThriftService {
         TTupleProtocol iprot = (TTupleProtocol) prot;
         BitSet incoming = iprot.readBitSet(1);
         if (incoming.get(0)) {
-          struct.success = new com.youmeek.ssm.module.query.service.Result();
+          struct.success = new Result();
           struct.success.read(iprot);
           struct.setSuccessIsSet(true);
         }

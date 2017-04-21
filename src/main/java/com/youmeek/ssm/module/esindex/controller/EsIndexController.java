@@ -8,10 +8,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.youmeek.ssm.module.esindex.pojo.EsIndex;
 import com.youmeek.ssm.module.esindex.service.EsIndexService;
+import com.youmeek.ssm.module.rpc.Action;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,11 +56,6 @@ public class EsIndexController {
     @RequestMapping("/test-logback")
     @ResponseBody
     public Date testLogback() {
-        LOG.trace("----------------------------------trace");
-        LOG.debug("-----------------------------------debug");
-        LOG.info("-----------------------------------info");
-        LOG.warn("-----------------------------------warn");
-        LOG.error("-----------------------------------error");
-        return new Date();
+               return new Date();
     }
 }

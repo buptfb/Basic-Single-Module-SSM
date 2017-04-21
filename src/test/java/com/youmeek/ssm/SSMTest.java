@@ -43,8 +43,8 @@ public class SSMTest {
     private JobService jobService;
     @Resource
     private DocService docService;
-
-    private QueryService queryService = new SimpleQueryServiceImpl();
+    @Resource
+    private QueryService queryService;
 
     @Test
     public void test1() {

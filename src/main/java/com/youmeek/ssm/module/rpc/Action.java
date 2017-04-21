@@ -4,7 +4,7 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-package com.youmeek.ssm.module.query.service;
+package com.youmeek.ssm.module.rpc;
 
 
 import org.apache.thrift.TEnum;
@@ -32,7 +32,7 @@ public enum Action implements TEnum {
    * Find a the enum type by its integer value, as defined in the Thrift IDL.
    * @return null if the value is not found.
    */
-  public static Action findByValue(int value) { 
+  public static Action findByValue(int value) {
     switch (value) {
       case 0:
         return QUERY;
